@@ -1,0 +1,124 @@
+% JDD Generator
+% 11/2025: v0.0: Erwan ZAMORA MEDINA 
+% 11/2025: v0.1: Simon KERN
+%
+\documentclass[11pt,a4paper]{article}
+% --- Encoding & language ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{xcolor}
+% RED HESAM/CNAM FOR M2N
+\definecolor{redHESAM}{RGB}{210,0,37}
+\definecolor{brand}{HTML}{0B7BD0} 
+\definecolor{brandlight}{HTML}{EAF4FC}
+\definecolor{accent}{HTML}{FF7A59} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%--- Typography & rules ---
+\usepackage{titlesec}
+\titleformat{\section}
+  {\Large\bfseries\color{brand}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\large\bfseries\color{brand}}
+  {\thesubsection}{1em}{}
+\usepackage{enumitem}
+\setlist[itemize]{label=\textbullet, leftmargin=1.2em}
+%% Beautiful color box :)
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --- Logos & header ---
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\graphicspath{{./} {../} {./logos/}} %Repertoire des images
+\newlength\logoh
+\setlength{\logoh}{12mm} % logo height (adjust as needed)
+\newcommand{\LeftLogo}{}
+\newcommand{\RightLogo}{}
+\newcommand{\setlogos}[2]{\renewcommand{\LeftLogo}{#1}\renewcommand{\RightLogo}{#2}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{18mm} % must be >= logo height
+\setlength{\headsep}{1mm}
+\lhead{\ifx\LeftLogo\empty\relax\else\includegraphics[height=\logoh]{\LeftLogo}\fi}
+\rhead{\ifx\RightLogo\empty\relax\else\includegraphics[height=\logoh]{\RightLogo}\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define template boxes s...
+\newtcolorbox{eventheader}[1][]{enhanced, colback=brandlight, colframe=brand, boxrule=0.7pt, arc=2mm, left=3mm, right=3mm, top=3mm, bottom=3mm, before skip=6pt, after skip=10pt, breakable, #1}
+\newtcolorbox{separatorbox}[1][]{enhanced, colback=brand!6, colframe=brand!40, boxrule=0.5pt, arc=1.6mm, fontupper=\bfseries, left=4mm,right=4mm,top=2.5mm,bottom=2.5mm, before skip=6pt, after skip=6pt, before upper=\centering, #1}
+\renewcommand{\titleline}{\par\vspace{2mm}\noindent\color{brand}\rule{\linewidth}{0.9pt}\par\vspace{1mm}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcommand{\talk}[4]{\textbf{#1:#2} & \textbf{#3} & \emph{\og #4 \fg}\\}
+\newcommand{\onlinetalk}[4]{\textbf{#1:#2} & \textbf{#3} & \emph{\og #4 \fg} \textbf{(online)}\\}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\EventTitle}{Journée des doctorants \the\year\, \textendash\, Planning}
+\newcommand{\EventDate}{Lundi 17~novembre~2025} % change as needed
+\newcommand{\EventOrg}{DynFluid}                % change as needed
+\newcommand{\EventPlace}{Amphi Pinel}           % change as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\setlogos{logos/dynfluid_980.png}{logos/m2n_1.png}
+\sffamily
+
+% Title
+{\huge\bfseries\color{redHESAM} \EventTitle\par}
+\vspace*{-3mm}
+\titleline
+{\large \EventDate \quad\textcolor{brand}{\textbullet}\quad \EventPlace\par}
+
+% Header info
+\begin{eventheader}
+\begin{itemize}[nosep]
+  \item \textbf{Accueil \EventOrg :} Café — à partir de \textbf{9\,h\,00}
+  \item \textbf{Démarrage Teams :} \EventPlace{} — \textbf{9\,h\,25}
+\end{itemize}
+\end{eventheader}
+\renewcommand{\arraystretch}{1.2}
+
+%Schedule block
+\begin{tcolorbox}[enhanced, breakable, colback=white, colframe=brand!50, boxrule=0.6pt, arc=2mm, left=3mm, right=3mm, top=2mm, bottom=2mm]\vspace{1mm}
+\noindent\textbf{Matinée}\par\smallskip
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{12mm} >{\raggedright\arraybackslash}p{48mm} X@{}}
+\toprule
+\onlinetalk{09}{25}{Liam O'Connor}{From Perfectionism to Paralysis: Breaking the Cycle}
+\talk{09}{50}{Rina Patel}{Why We Wait: The Science of Postponing Research Tasks}
+\talk{10}{15}{Elena Ivanova}{Overcoming the “Just One More Source” Trap}
+\onlinetalk{10}{40}{Marco Garcia}{Time Management Tools for the Modern Researcher}
+\talk{11}{05}{Jane Miller}{From Procrastination to Publication: A Researcher’s Journey}
+\talk{11}{30}{Keiko Sato}{The Role of Impostor Syndrome in Research Procrastination}
+\bottomrule\\[-6mm]
+\end{tabularx}
+
+\begin{separatorbox}[colback=accent!10,colframe=accent!50]
+ 12\,h\,00 — 14\,h\,00 \quad Pause déjeuner
+\end{separatorbox}
+
+\noindent\textbf{Après-midi}\par\smallskip
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{12mm} >{\raggedright\arraybackslash}p{48mm} X@{}}
+\toprule
+\onlinetalk{14}{00}{Alicia Hernandez}{The Psychology of Academic Delay}
+\onlinetalk{14}{25}{Thomas Nguyen}{Tools vs. Distractions: Managing Digital Procrastination}
+\onlinetalk{14}{50}{Carlos Rodriguez}{Data Deadlines and Decision Fatigue}
+\talk{15}{15}{Anika Singh}{Turning Delay into Discovery: Productive Procrastination}
+\multicolumn{3}{@{}l@{}}{\begin{separatorbox}[colback=brand!6,colframe=brand!30]
+ 15\,h\,40 — 16\,h\,00 \quad Pause café
+\end{separatorbox}}\\[2mm]
+\onlinetalk{16}{00}{Min-Jae Kim}{Procrastination Across Cultures: A Global View}
+\onlinetalk{16}{25}{David Johnson}{Collaborative Accountability: How Teams Beat Delay}
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\end{tcolorbox}
+
+\begin{flushright}
+\small \textcolor{redHESAM!70}{Content coordinator: J. S. KERN. Artistic director: E. ZAMORA-MEDINA. \today}
+\end{flushright}
+\end{document}
